@@ -1,0 +1,10 @@
+<h2>Puzzles</h2>
+
+<% @puzzles.each do |product| %>
+  <%= form_for :product, url: cart_of_fun.add_item_cart_path, method: :post do |f| %>
+    <%= number_to_currency product.price %>
+    <%= f.number_field :quantity, value: 1, min: 1, max: 9 %>
+    <%= f.hidden_field :product_id, value: "#{product.class}_#{product.id}" %>
+    <%= f.submit 'Add to cart'%>
+  <% end %>
+<% end %>

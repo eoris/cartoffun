@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <% if @cart.blank? %>
+      <div class="text-center jumbotron lead">
+        <%= t('cart.your_cart_empty') %>
+      </div>
+    <% else %>
+      <%= form_tag(cart_of_fun.cart_path, method: :patch) do %>
+        <table class="table table-hover cart">
+          <thead>
+            <tr>
+              <th></th>
+              <th>
+                <%= t('cart.item') %>
+              </th>
+              <th class="text-center">
+                <%= t('cart.price') %>
+              </th>
+              <th class="text-center">
+                <%= t('cart.qty') %>
+              </th>
+              <th class="text-center">
+                <%= t('cart.total') %>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @cart.each_pair do |product, qty| %>
+            <tr>
+              <td>
+                <%= image_tag(find_order_item(product), size: "50x82") %>
+              </td>
+              <td>
+                <dl>
+                  <dt>
+                    <%= find_order_item(product).title %>
+                  </dt>
+                  <dd>
+                    <%= truncate(find_order_item(product).description, length: 250) %>
+                  </dd>
+                </dl>
+              </td>
+              <td class="text-center cart_price">
+                <%= number_to_currency find_order_item(product).price %>
+              </td>
+              <td class="text-center cart-qty" id="qty_<%= product %>">
+                <%= number_field_tag product, qty,class: 'form-control', min: '1', max: '9' %>
+              </td>
+              <td class="text-center cart_total">
+                <%= number_to_currency order_item_price(qty, product) %>
+              </td>
+              <td class="text-center cart_remove">
+                <%= link_to('x', cart_of_fun.remove_item_cart_path(item_id: product), method: :delete, class: 'close', id: product) %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+        <% unless @cart.empty? %>
+          <p class="text-right">
+            <strong class="subtotal">
+              <%= t('cart.subtotal') + " #{number_to_currency @subtotal}" %>
+            </strong>
+          </p>
+          <div class="col-md-4">
+            <%= link_to t('cart.empty_cart'), cart_of_fun.clear_cart_path, method: :delete, class: 'btn btn-danger' %>
+            <%= link_to t('cart.continue_shoping'), '/', class: 'btn btn-default' %>
+          </div>
+          <div class="col-md-6">
+            <div class="form-inline text-right">
+              <div class="form-group">
+                <%= text_field_tag :coupon, nil, {class: 'form-control', id: 'coupon', placeholder: t('cart.coupon_code') + ' (1111 -20%)'} %>
+              </div>
+              <div class="form-group">
+                <%= submit_tag t('cart.update') %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 text-right">
+            <%= link_to t('cart.checkout'), cart_of_fun.checkout_cart_path, method: :post, class: 'btn btn-success' %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
