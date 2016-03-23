@@ -13,10 +13,10 @@ module CartOfFun
     end
 
     def params_valid?(params)
-       i = params[:product_id][/\d+/].to_i
+      i = params[:product_id][/\d+/].to_i
             .between?(1, params[:product_id].split('_').first.constantize.last.id)
-       q = params[:quantity].to_i.between?(1, 9)
-       i && q
+      q = params[:quantity].to_i.between?(1, 9)
+      i && q
     end
 
     def add_item_to_cart(cart_params)

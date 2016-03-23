@@ -3,8 +3,9 @@ module CartOfFun
     protect_from_forgery with: :exception
 
     CUSTOMERS.each do |customer|
-      alias_method :current_customer, "current_#{customer.underscore}".to_sym
-      alias_method :authenticate_customer!, "authenticate_#{customer.underscore}!"
+      if Warden
+        alias_method :current_customer, "current_#{customer.underscore}".to_sym
+      end
     end
 
   end

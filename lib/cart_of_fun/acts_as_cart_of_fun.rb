@@ -11,9 +11,9 @@ module CartOfFun
                             dependent: :destroy, as: :customer
           has_many :credit_card, class_name: 'CartOfFun::CreditCard',
                                 dependent: :destroy, as: :customer
-          has_one  :shipping_address, class_name: 'CartOfFun::Address',
+          has_one  :shipping_address, class_name: 'CartOfFun::ShippingAddress',
                                 dependent: :destroy, as: :customer
-          has_one  :billing_address, class_name: 'CartOfFun::Address',
+          has_one  :billing_address, class_name: 'CartOfFun::BillingAddress',
                                 dependent: :destroy, as: :customer
         end
       end

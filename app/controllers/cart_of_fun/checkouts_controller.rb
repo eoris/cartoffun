@@ -3,7 +3,6 @@ require_dependency "cart_of_fun/application_controller"
 module CartOfFun
   class CheckoutsController < ApplicationController
     before_action :find_order
-    before_action :authenticate_customer!
     before_action :order_state_check, except: [:show]
     before_action :addresses_init, only: [:addresses, :update_addresses]
     before_action :find_or_init_credit_card, only: [:payment, :update_payment]
