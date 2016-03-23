@@ -1,0 +1,38 @@
+<%= render 'checkout_header' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="panel panel-default billing">
+        <div class="panel-heading">
+          <h4 class="text-capitalize">
+            <%= t('cart_of_fun.checkout.payment') %>
+          </h4>
+        </div>
+        <div class="panel-body">
+          <%= simple_form_for @credit_card, url: update_payment_order_checkout_path, method: :patch do |f| %>
+            <%= f.input :number, label: false, placeholder: 'Card Number', input_html: { minlength: 16, maxlength: 16 } %>
+            <br>
+              <h5>
+                <%= t('cart_of_fun.checkout.expiration_date') %>
+              </h5>
+              <%= select_month(Date.today, use_month_numbers: true, prefix: 'credit_card', field_name: 'expiration_month') %>
+              <%= select_year(Date.today, start_year: 2016, end_year: 2033, prefix: 'credit_card', field_name: 'expiration_year') %>
+            </br>
+            <br/>
+            <div class="form-inline">
+              <%= f.input :cvv, label: false, placeholder: 'CVV', input_html: { minlength: 3, maxlength: 3, style: 'width: 80px' } %>
+              <%= link_to t('cart_of_fun.checkout.whats_this'), 'https://www.cvvnumber.com/' %>
+            </div>
+            <br>
+              <%= f.submit t("cart_of_fun.checkout.save"), class: 'btn btn-primary' %>
+            </br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <%= render 'order_summary' %>
+    </div>
+  </div>
+</div>

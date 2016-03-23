@@ -2,7 +2,7 @@
   <div class="row">
     <% if @cart.blank? %>
       <div class="text-center jumbotron lead">
-        <%= t('cart.your_cart_empty') %>
+        <%= t('cart_of_fun.cart.your_cart_empty') %>
       </div>
     <% else %>
       <%= form_tag(cart_of_fun.cart_path, method: :patch) do %>
@@ -11,16 +11,16 @@
             <tr>
               <th></th>
               <th>
-                <%= t('cart.item') %>
+                <%= t('cart_of_fun.cart.item') %>
               </th>
               <th class="text-center">
-                <%= t('cart.price') %>
+                <%= t('cart_of_fun.cart.price') %>
+              </th>
+              <th>
+                <%= t('cart_of_fun.cart.qty') %>
               </th>
               <th class="text-center">
-                <%= t('cart.qty') %>
-              </th>
-              <th class="text-center">
-                <%= t('cart.total') %>
+                <%= t('cart_of_fun.cart.total') %>
               </th>
               <th></th>
             </tr>
@@ -58,25 +58,25 @@
         <% unless @cart.empty? %>
           <p class="text-right">
             <strong class="subtotal">
-              <%= t('cart.subtotal') + " #{number_to_currency @subtotal}" %>
+              <%= t('cart_of_fun.cart.subtotal') + " #{number_to_currency @subtotal}" %>
             </strong>
           </p>
           <div class="col-md-4">
-            <%= link_to t('cart.empty_cart'), cart_of_fun.clear_cart_path, method: :delete, class: 'btn btn-danger' %>
-            <%= link_to t('cart.continue_shoping'), '/', class: 'btn btn-default' %>
+            <%= link_to t('cart_of_fun.cart.empty_cart'), cart_of_fun.clear_cart_path, method: :delete, class: 'btn btn-danger' %>
+            <%= link_to t('cart_of_fun.cart.continue_shoping'), '/', class: 'btn btn-default' %>
           </div>
           <div class="col-md-6">
             <div class="form-inline text-right">
               <div class="form-group">
-                <%= text_field_tag :coupon, nil, {class: 'form-control', id: 'coupon', placeholder: t('cart.coupon_code') + ' (1111 -20%)'} %>
+                <%= text_field_tag :coupon, nil, {class: 'form-control', id: 'coupon', placeholder: t('cart_of_fun.cart.coupon_code')} %>
               </div>
               <div class="form-group">
-                <%= submit_tag t('cart.update') %>
+                <%= submit_tag t('cart_of_fun.cart.update'), class: 'btn btn-primary btn-block' %>
               </div>
             </div>
           </div>
           <div class="col-md-2 text-right">
-            <%= link_to t('cart.checkout'), cart_of_fun.checkout_cart_path, method: :post, class: 'btn btn-success' %>
+            <%= link_to t('cart_of_fun.cart.checkout'), cart_of_fun.checkout_cart_path, method: :post, class: 'btn btn-success' %>
           </div>
         <% end %>
       <% end %>

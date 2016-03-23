@@ -1,0 +1,91 @@
+<%= render 'checkout_header' %>
+<div class="container">
+  <div class="row">
+    <%= simple_form_for(:addresses, url: update_addresses_order_checkout_path, :method => :patch) do |a| %>
+      <div class="col-md-4">
+        <div class="panel panel-default billing">
+          <div class="panel-heading">
+            <h4>
+              <%= t('cart_of_fun.checkout.billing_address', :default => "Billing Address") %>
+            </h4>
+          </div>
+          <div class="panel-body">
+            <%= simple_fields_for @billing_address do |ba| %>
+              <%= ba.input :firstname %>
+              <%= ba.input :lastname %>
+              <%= ba.input :address %>
+              <%= ba.input :city %>
+              <%= ba.input :country_id, collection: @countries %>
+              <%= ba.input :zipcode %>
+              <%= ba.input :phone, as: 'tel' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-default shipping">
+          <div class="panel-heading">
+            <h4>
+              <%= t('cart_of_fun.checkout.shipping_address', :default => "Shipping Address") %>
+              <%= check_box_tag 'shipping_as_billing', true, false, id: 'shipping-checkbox' %>
+              <em class="small">Use Billing Address</em>
+            </h4>
+          </div>
+          <div class="panel-body shipping-input">
+            <%= simple_fields_for @shipping_address do |sa| %>
+              <%= sa.input :firstname %>
+              <%= sa.input :lastname %>
+              <%= sa.input :address %>
+              <%= sa.input :city %>
+              <%= sa.input :country_id, collection: @countries %>
+              <%= sa.input :zipcode %>
+              <%= sa.input :phone, as: 'tel' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-default shipping">
+          <div class="panel-heading">
+            <h4>
+              <%= t('cart_of_fun.checkout.order_summary') %>
+            </h4>
+          </div>
+          <div class="panel-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <td>
+                    <%= t('cart_of_fun.checkout.item_total') %>
+                  </td>
+                  <td>
+                    <%= number_to_currency @order.total_price %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <br/>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr class="info">
+                  <td>
+                    <%= t('cart_of_fun.checkout.order_total') %>
+                  </td>
+                  <td>
+                    <%= number_to_currency @order.total_price %>
+                  </td>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <br>
+          <%= a.submit t("cart_of_fun.checkout.save"), class: 'btn btn-primary' %>
+        </br>
+      </div>
+    <% end %>
+  </div>
+</div>

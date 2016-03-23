@@ -1,0 +1,45 @@
+<div class="panel panel-default shipping">
+  <div class="panel-heading">
+    <h4>
+      <%= t('cart_of_fun.checkout.order_summary') %>
+    </h4>
+  </div>
+  <div class="panel-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>
+            <%= t('cart_of_fun.checkout.item_total') %>
+          </td>
+          <td>
+            <%= number_to_currency @order.total_price %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= t('cart_of_fun.checkout.shipping') %>
+          </td>
+          <td>
+            <% if @order.delivery.blank? %>
+              <%= number_to_currency @deliveries.first.price %>
+            <% else %>
+              <%= number_to_currency @order.delivery.price %>
+            <% end %>
+          </td>
+        </tr>
+        <tr class="info">
+          <td>
+            <%= t('cart_of_fun.checkout.order_total') %>
+          </td>
+          <td>
+            <% if @order.delivery.blank? %>
+              <%= number_to_currency @order.total_price + @deliveries.first.price %>
+            <% else %>
+              <%= number_to_currency @order.total_price + @order.delivery.price %>
+            <% end %>
+          </td>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>

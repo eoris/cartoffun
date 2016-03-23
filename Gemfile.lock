@@ -5,10 +5,14 @@ PATH
       aasm
       jquery-rails
       rails (~> 4.2.6)
+      rails-assets-bootstrap
+      sass-rails (~> 5.0)
+      simple_form
       turbolinks
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.tenex.tech/
   specs:
     aasm (4.9.0)
     actionmailer (4.2.6)
@@ -116,6 +120,9 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.6)
       sprockets-rails
+    rails-assets-bootstrap (3.3.6)
+      rails-assets-jquery (>= 1.9.1, < 3)
+    rails-assets-jquery (2.2.2)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -149,8 +156,18 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    sass (3.4.21)
+    sass-rails (5.0.4)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (>= 1.1, < 3)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -161,6 +178,7 @@ GEM
     sqlite3 (1.3.11)
     thor (0.19.1)
     thread_safe (0.3.5)
+    tilt (2.0.2)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -181,6 +199,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  rails-assets-bootstrap!
   rspec-rails
   shoulda-matchers
   sqlite3

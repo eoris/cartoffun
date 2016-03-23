@@ -21,6 +21,9 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "turbolinks"
   s.add_dependency "aasm"
+  s.add_dependency "simple_form"
+  s.add_dependency "rails-assets-bootstrap"
+  s.add_dependency "sass-rails", "~> 5.0"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "devise"

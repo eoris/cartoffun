@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        <%= t('cart_of_fun.checkout.checkout') %>
+      </h3>
+      <ol class="breadcrumb text-center">
+        <li>
+          <%= link_to t('cart_of_fun.checkout.address'), addresses_order_checkout_path %>
+        </li>
+        <li class="text-uppercase">
+          <% if @order.billing_address.nil? || @order.shipping_address.nil? %>
+            <%= t('cart_of_fun.checkout.delivery') %>
+          <% else %>
+            <%= link_to t('cart_of_fun.checkout.delivery'), delivery_order_checkout_path %>
+          <% end %>
+        </li>
+        <li class="text-uppercase">
+          <% if @order.delivery.nil? %>
+            <%= t('cart_of_fun.checkout.payment') %>
+          <% else %>
+            <%= link_to t('cart_of_fun.checkout.payment'), payment_order_checkout_path %>
+          <% end %>
+        </li>
+        <li>
+          <% if @order.credit_card.nil? %>
+            <%= t('cart_of_fun.checkout.confirm') %>
+          <% else %>
+            <%= link_to t('cart_of_fun.checkout.confirm'), confirm_order_checkout_path %>
+          <% end %>
+        </li>
+        <li>
+          <%= t('cart_of_fun.checkout.complete') %>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>

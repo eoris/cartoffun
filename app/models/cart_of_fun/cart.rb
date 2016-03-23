@@ -13,7 +13,8 @@ module CartOfFun
     end
 
     def params_valid?(params)
-       i = params[:product_id][/\d+/].to_i.between?(1, params[:product_id].split('_').first.constantize.last.id)
+       i = params[:product_id][/\d+/].to_i
+            .between?(1, params[:product_id].split('_').first.constantize.last.id)
        q = params[:quantity].to_i.between?(1, 9)
        i && q
     end
@@ -46,7 +47,8 @@ module CartOfFun
       return if @session.empty?
       order_items = []
       @session.each do |k, v|
-        order_items << OrderItem.new(product_id: k[/\d+/],
+        order_items << OrderItem.new(product_type: k.split('_').first,
+                                     product_id: k[/\d+/],
                                      price: find_product(k).price * v,
                                      quantity: v)
       end

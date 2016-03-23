@@ -4,6 +4,8 @@ module CartOfFun
 
     module ClassMethods
       def acts_as_customer
+        CUSTOMERS.push(self.name).uniq!
+
         class_eval do
           has_many :orders, class_name: 'CartOfFun::Order',
                             dependent: :destroy, as: :customer
@@ -17,8 +19,6 @@ module CartOfFun
       end
 
       def acts_as_product
-        PRODUCTS.push(self.name).uniq!
-
         class_eval do
           has_many :order_items, class_name: 'CartOfFun::OrderItem',
                                  dependent: :destroy, as: :product

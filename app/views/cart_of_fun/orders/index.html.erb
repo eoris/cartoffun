@@ -1,0 +1,191 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12"></div>
+    <h4>
+      <b>
+        <%= t('cart_of_fun.orders.in_progress') %>
+      </b>
+    </h4>
+    <% @orders.in_progress.each do |o| %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              <%= t('cart_of_fun.orders.product') %>
+            </th>
+            <th class="text-center">
+              <%= t('cart_of_fun.orders.price') %>
+            </th>
+            <th class="text-center">
+              <%= t('cart_of_fun.orders.qty') %>
+            </th>
+            <th class="text-center">
+              <%= t('cart_of_fun.orders.total') %>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <% o.order_items.each do |oi| %>
+          <tr>
+            <td>
+              <%= image_tag(oi.product, size: "50x82") %>
+            </td>
+            <td>
+              <dl>
+                <dt>
+                  <%= oi.product.title %>
+                </dt>
+                <dd>
+                  <%= truncate(oi.product.description, length: 250) %>
+                </dd>
+              </dl>
+            </td>
+            <td class="text-center">
+              <%= number_to_currency oi.price / oi.quantity %>
+            </td>
+            <td class="text-center">
+              <%= oi.quantity %>
+            </td>
+            <td class="text-center">
+              <%= number_to_currency oi.price %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+      <ul class="list-unstyled list-inline">
+        <li>
+          <%= link_to t('cart_of_fun.orders.back_to_checkout'), order_checkout_path(o), class: 'btn btn-success' %>
+        </li>
+        <li class="pull-right">
+          <ins>
+            <%= "#{t('cart_of_fun.orders.subtotal')} #{number_to_currency o.total_price}" %>
+          </ins>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12"></div>
+    <h4>
+      <%= t('cart_of_fun.orders.waiting_for_processing') %>
+    </h4>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="text-center">
+            <%= t('cart_of_fun.orders.number') %>
+          </th>
+          <th class="text-center">
+            <%= t('cart_of_fun.orders.completed_at') %>
+          </th>
+          <th class="text-center">
+            <%= t('cart_of_fun.orders.total') %>
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @orders.in_queue.each do |o| %>
+        <tr class="text-center">
+          <td>
+            <%= "N #{o.id}" %>
+          </td>
+          <td>
+            <%= o.completed_date.strftime('%Y-%m-%d') %>
+          </td>
+          <td>
+            <%= number_to_currency o.total_price %>
+          </td>
+          <td>
+            <%= link_to t('cart_of_fun.orders.view'), order_path(o) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12"></div>
+    <h4>
+      <%= t('cart_of_fun.orders.in_delivery') %>
+    </h4>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="text-center">
+            <%= t('cart_of_fun.orders.number') %>
+          </th>
+          <th class="text-center">
+            <%= t('cart_of_fun.orders.completed_at') %>
+          </th>
+          <th class="text-center">
+            <%= t('cart_of_fun.orders.total') %>
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @orders.in_delivery.each do |o| %>
+        <tr class="text-center">
+          <td>
+            <%= "N #{o.id}" %>
+          </td>
+          <td>
+            <%= o.completed_date.strftime('%Y-%m-%d') %>
+          </td>
+          <td>
+            <%= number_to_currency o.total_price %>
+          </td>
+          <td>
+            <%= link_to t('cart_of_fun.orders.view'), order_path(o) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12"></div>
+    <h4>
+      <%= t('cart_of_fun.orders.delivered') %>
+    </h4>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="text-center">
+            <%= t('cart_of_fun.orders.number') %>
+          </th>
+          <th class="text-center">
+            <%= t('cart_of_fun.orders.completed_at') %>
+          </th>
+          <th class="text-center">
+            <%= t('cart_of_fun.orders.total') %>
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @orders.delivered.each do |o| %>
+        <tr class="text-center">
+          <td>
+            <%= "N #{o.id}" %>
+          </td>
+          <td>
+            <%= o.completed_date.strftime('%Y-%m-%d') %>
+          </td>
+          <td>
+            <%= number_to_currency o.total_price %>
+          </td>
+          <td>
+            <%= link_to t('cart_of_fun.orders.view'), order_path(o) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

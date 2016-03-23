@@ -1,0 +1,35 @@
+<%= render 'checkout_header' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="panel panel-default billing">
+        <div class="panel-heading">
+          <h4 class="text-capitalize">
+            <%= t('cart_of_fun.checkout.delivery') %>
+          </h4>
+        </div>
+        <div class="panel-body">
+          <%= simple_form_for @order, url: update_delivery_order_checkout_path(@order), method: :patch do |f| %>
+            <% @deliveries.each do |d| %>
+              <div class="radid">
+                <lable>
+                  <p>
+                    <%= f.radio_button :delivery_id, d.id, checked: d == @order.delivery || d == @deliveries.first %>
+                    <%= "#{d.title} + #{number_to_currency(d.price)}" %>
+                  </p>
+                </lable>
+              </div>
+            <% end %>
+            <br>
+              <%= f.submit t("cart_of_fun.checkout.save"), class: 'btn btn-primary' %>
+            </br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <%= render 'order_summary' %>
+    </div>
+  </div>
+</div>

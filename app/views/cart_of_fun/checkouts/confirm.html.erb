@@ -1,0 +1,218 @@
+<%= render 'checkout_header' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4>
+        <%= t('cart_of_fun.checkout.confirm') %>
+      </h4>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h5>
+        <strong>
+          <%= t('cart_of_fun.checkout.billing_address') %>
+        </strong>
+        <small>
+          <%= link_to(t('cart_of_fun.checkout.edit'), addresses_order_checkout_path) %>
+        </small>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <%= "#{@order.billing_address.firstname} #{@order.billing_address.lastname}" %>
+        </li>
+        <li>
+          <%= "#{@order.billing_address.address}" %>
+        </li>
+        <li>
+          <%= "#{@order.billing_address.city} #{@order.billing_address.zipcode}" %>
+        </li>
+        <li>
+          <%= "#{@order.billing_address.country.name}" %>
+        </li>
+        <li>
+          <%= "#{@order.billing_address.phone}" %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-3">
+      <h5>
+        <strong>
+          <%= t('cart_of_fun.checkout.shipping_address') %>
+        </strong>
+        <small>
+          <%= link_to(t('cart_of_fun.checkout.edit'), addresses_order_checkout_path) %>
+        </small>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <%= "#{@order.shipping_address.firstname} #{@order.shipping_address.lastname}" %>
+        </li>
+        <li>
+          <%= "#{@order.shipping_address.address}" %>
+        </li>
+        <li>
+          <%= "#{@order.shipping_address.city} #{@order.shipping_address.zipcode}" %>
+        </li>
+        <li>
+          <%= "#{@order.shipping_address.country.name}" %>
+        </li>
+        <li>
+          <%= "#{@order.shipping_address.phone}" %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-3">
+      <h5>
+        <strong>
+          <%= t('cart_of_fun.checkout.shipments') %>
+        </strong>
+        <small>
+          <%= link_to(t('cart_of_fun.checkout.edit'), delivery_order_checkout_path) %>
+        </small>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <%= @order.delivery.title %>
+        </li>
+        <li>
+          <%= number_to_currency @order.delivery.price %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-3">
+      <h5>
+        <strong>
+          <%= t('cart_of_fun.checkout.payment_information') %>
+        </strong>
+        <small>
+          <%= link_to(t('cart_of_fun.checkout.edit'), payment_order_checkout_path) %>
+        </small>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <%= "#{t('cart_of_fun.checkout.asterisk')} #{@order.credit_card.number.to_s.last(4)}" %>
+        </li>
+        <li>
+          <%= "#{@order.credit_card.expiration_month} / #{@order.credit_card.expiration_year}" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              <%= t('cart_of_fun.checkout.product') %>
+            </th>
+            <th class="text-center">
+              <%= t('cart_of_fun.checkout.price') %>
+            </th>
+            <th class="text-center">
+              <%= t('cart_of_fun.checkout.qty') %>
+            </th>
+            <th class="text-center">
+              <%= t('cart_of_fun.checkout.total') %>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @order.order_items.each do |oi| %>
+          <tr>
+            <td>
+              <%= image_tag(oi.product, size: "50x82") %>
+            </td>
+            <td>
+              <dl>
+                <dt>
+                  <%= oi.product.title %>
+                </dt>
+                <dd>
+                  <%= truncate(oi.product.description, length: 250) %>
+                </dd>
+              </dl>
+            </td>
+            <td class="text-center">
+              <%= number_to_currency oi.price %>
+            </td>
+            <td class="text-center">
+              <%= oi.quantity %>
+            </td>
+            <td class="text-center">
+              <%= number_to_currency oi.price %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9"></div>
+    <div class="col-md-3">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td>
+              <ul class="list-unstyled text-right">
+                <li>
+                  <%= t('cart_of_fun.checkout.subtotal') %>
+                </li>
+                <li>
+                  <%= t('cart_of_fun.checkout.shipping') %>
+                </li>
+              </ul>
+            </td>
+            <td>
+              <ul class="list-unstyled">
+                <li>
+                  <%= number_to_currency @order.total_price %>
+                </li>
+                <li>
+                  <%= number_to_currency @order.delivery.price %>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <ul class="list-unstyled text-right">
+                <li>
+                  <strong>
+                    <%= t('cart_of_fun.checkout.order_total') %>
+                  </strong>
+                </li>
+              </ul>
+            </td>
+            <td>
+              <ul class="list-unstyled">
+                <li>
+                  <strong>
+                    <%= number_to_currency @order.total_price + @order.delivery.price %>
+                  </strong>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+        <%= button_to t('cart_of_fun.checkout.place_order'), place_order_checkout_path, method: :post, class: 'btn btn-success' %>
+      </br>
+    </div>
+  </div>
+</div>
