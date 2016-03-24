@@ -1,7 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.tenex.tech' do
-  gem 'rails-assets-bootstrap'
-end
 
 # Declare your gem's dependencies in cart_of_fun.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and

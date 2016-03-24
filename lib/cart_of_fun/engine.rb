@@ -1,3 +1,10 @@
+require 'aasm'
+require 'jquery-rails'
+require 'turbolinks'
+require 'simple_form'
+require 'bootstrap-sass'
+require 'sass-rails'
+
 module CartOfFun
   class Engine < ::Rails::Engine
     isolate_namespace CartOfFun
