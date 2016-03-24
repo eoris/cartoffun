@@ -123,7 +123,7 @@ module CartOfFun
         expect(@cart.build_order_items_from_cart.first).to be_a(OrderItem)
       end
 
-      it 'each with book_id' do
+      it 'each with product_id' do
         expect(@cart.build_order_items_from_cart.map(&:product_id)).to match_array([@book1.id, @book2.id, @book3.id])
       end
 

@@ -73,7 +73,7 @@ module CartOfFun
     end
 
     def order_state_check
-      redirect_to root_path unless @order.in_progress?
+      redirect_to main_app.root_path unless @order.in_progress?
     end
 
     def addresses_init

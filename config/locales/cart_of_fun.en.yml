@@ -1,6 +1,7 @@
 en:
   cart_of_fun:
     cart:
+      add_to_cart: 'Add to cart'
       product: 'PRODUCT'
       price: 'PRICE'
       qty: 'QTY'

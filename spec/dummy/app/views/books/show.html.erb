@@ -1,0 +1,9 @@
+<h2> <%= @book.title %></h2>
+
+<%= form_for :product, url: cart_of_fun.add_item_cart_path, method: :post do |f| %>
+  <%= number_to_currency @book.price %>
+  <%= f.number_field :quantity, value: 1, min: 1, max: 9 %>
+  <%= f.hidden_field :product_id, value: "#{@book.class}_#{@book.id}" %>
+  <%= f.submit t('cart_of_fun.cart.add_to_cart')%>
+<% end %>
+
