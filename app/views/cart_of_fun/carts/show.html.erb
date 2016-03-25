@@ -44,7 +44,7 @@
                 <%= number_to_currency find_order_item(product).price %>
               </td>
               <td class="text-center cart-qty" id="qty_<%= product %>">
-                <%= number_field_tag product, qty,class: 'form-control', min: '1', max: '9' %>
+                <%= number_field_tag product, qty, class: 'form-control', min: '1', max: '9' %>
               </td>
               <td class="text-center cart_total">
                 <%= number_to_currency order_item_price(qty, product) %>
