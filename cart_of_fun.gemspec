@@ -9,9 +9,8 @@ Gem::Specification.new do |s|
   s.version     = CartOfFun::VERSION
   s.authors     = ["eoris"]
   s.email       = ["eoris.work@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of CartOfFun."
-  s.description = "TODO: Description of CartOfFun."
+  s.summary     = "Summary of CartOfFun."
+  s.description = "Simple shopping cart engine"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
